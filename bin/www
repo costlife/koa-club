@@ -1,0 +1,9 @@
+const Koa = require('koa');
+
+const main = require('../main.js');
+
+const app = new Koa();
+
+main(app);
+
+app.listen(3000);

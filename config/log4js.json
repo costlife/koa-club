@@ -1,0 +1,15 @@
+{
+    "appenders": [{
+        "type": "clustered",
+        "appenders": [{
+            "type": "dateFile",
+            "filename": "log/access.log",
+            "pattern": "-yyyy-MM-dd",
+            "category": "access",
+            "layout": {
+                "type": "pattern",
+                "pattern": "%p %d %m"
+            }
+        }]
+    }]
+}
