@@ -1,2 +1,1 @@
-# sr-node-cms
-cms node
+# node-koa-club
