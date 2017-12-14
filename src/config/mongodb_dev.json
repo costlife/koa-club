@@ -1,7 +1,6 @@
 {
-    "address": "mongodb://127.0.0.1/",
-    "port": "27017",
-    "dbname": "club",
+    "address": "mongodb://127.0.0.1:27017/",
+    "dbname": "cms",
     "options": {
         "db": {
             "native_parser": true
@@ -11,8 +10,6 @@
         },
         "replset": {
             "rs_name": "myReplicaSetName"
-        },
-        "user": "",
-        "pass": ""
+        }
     }
 }

@@ -1,19 +1,19 @@
 class BaseService {
     constructor(props) {
-        //super(props);
-        this.model = props;
+      //super(props);
+      this.model = props;
     }
     async getList(cursor = 0, limit = 20) {
         const count = await this.model.count({});
-        const result = await this.model.find({}).skip(parseInt(cursor), 10).limit(limit);
+        const result = await this.model.find({}).skip(parseInt(cursor), 10).limit(parseInt(limit), 10);
         return {
-            result: result,
-            count: count,
+          result: result,
+          count: count,
         };
     }
     async getById(id) {
         const result = await this.model.find({
-            uid: id
+            _id: id
         });
         return result;
     }
@@ -34,6 +34,17 @@ class BaseService {
         }
         return result;
     }
+
+    async addBatch(infos){
+      const result = []
+      for (let info of infos) {
+        result.push(await this.add(info))
+      }
+      return {
+        result: result
+      } 
+    }
+
     async update(id, info) {
         const result = await this.model.update({
             _id: id

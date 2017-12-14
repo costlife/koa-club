@@ -1,0 +1,15 @@
+{
+    "address": "mongodb://127.0.0.1:27017/",
+    "dbname": "cms",
+    "options": {
+        "db": {
+            "native_parser": true
+        },
+        "server": {
+            "poolSize": 5
+        },
+        "replset": {
+            "rs_name": "myReplicaSetName"
+        }
+    }
+}

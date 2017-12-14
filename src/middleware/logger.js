@@ -1,5 +1,5 @@
 const log4js = require('log4js');
-log4js.configure('./config/log4js.json');
+log4js.configure(__dirname + '/../config/log4js.json');
 const loggerAccess = log4js.getLogger("access");
 
 const logger = require('koa-logger')();

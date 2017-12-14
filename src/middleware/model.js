@@ -2,23 +2,26 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+const db_config = {
+    dev: require('../config/mongodb_dev.json'),
+    prod: require('../config/mongodb_prod.json'),
+    test: require('../config/mongodb_test.json')
+}
 let models = {};
 
 function dbConnect() {
-    const {
-        address,
-        port,
-        dbname,
-        options,
-    } = require('../config/mongodb.json');
-    const url = `${address}:${port}/${dbname}`;
+    let env = process.env.NODE_ENV || 'dev';
+    const {address, dbname, options} = db_config[env]
+    console.log(address)
+    let url = `${address}${dbname}`;
     mongoose.connect(url, options);
 }
 
+const path = __dirname + '/../model/';
 function buildModels() {
-    const files = fs.readdirSync('./model/');
+    const files = fs.readdirSync(path);
     files.forEach((file) => {
-        const modelProperty = require(`../model/${file}`);
+        const modelProperty = require(path + file);
         const entitySchema = mongoose.Schema(modelProperty);
         const modelName = file.substr(0, file.length - 3);
         models[modelName] = mongoose.model(modelName, entitySchema);
